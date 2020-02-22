@@ -153,8 +153,17 @@ public class MusicOrganizer
     public void shufflePlay()
     {
         int trackNum;
-        if (tracks.size() > 0)
-            trackNum = (rand.nextInt((tracks.size() - 1)) + 1 );        
+        
+        for(Track track : tracks)
+        {
+            if (tracks.size() > 0)
+            {
+                trackNum = (rand.nextInt((tracks.size() - 1)) + 1 );        
+            }
+                
+                
+            
+        }
         
         
         
