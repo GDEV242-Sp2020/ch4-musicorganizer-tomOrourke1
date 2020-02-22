@@ -152,7 +152,7 @@ public class MusicOrganizer
      */
     public void shufflePlay()
     {
-        int trackNum;
+        int trackNum = 0;
         
         for(Track track : tracks)
         {
@@ -160,7 +160,8 @@ public class MusicOrganizer
             {
                 trackNum = (rand.nextInt((tracks.size() - 1)) + 1 );        
             }
-                
+            shuffTracks.add(tracks.get(trackNum));
+            tracks.remove(tracks.get(trackNum));
                 
             
         }
