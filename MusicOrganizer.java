@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Random;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -15,6 +15,13 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    
+    // an arrayList for storing the tracks in a different order
+    private ArrayList<Track> shuffTracks;
+    // an arrayList for storing the played tracks
+    private ArrayList<Track> storage;
+    
+    private Random rand;
 
     /**
      * Create a MusicOrganizer
@@ -24,6 +31,11 @@ public class MusicOrganizer
         tracks = new ArrayList<>();
         player = new MusicPlayer();
         reader = new TrackReader();
+        
+        shuffTracks = new ArrayList<>();
+        storage = new ArrayList<>();
+        rand = new Random();
+        
         readLibrary("../audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
@@ -134,7 +146,27 @@ public class MusicOrganizer
     {
         player.stop();
     }
-
+    
+    /**
+     * Random playing
+     */
+    public void shufflePlay()
+    {
+        int trackNum;
+        if (tracks.size() > 0)
+            trackNum = (rand.nextInt((tracks.size() - 1)) + 1 );        
+        
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
     /**
      * Determine whether the given index is valid for the collection.
      * Print an error message if it is not.
