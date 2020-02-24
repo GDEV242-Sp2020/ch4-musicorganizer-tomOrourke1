@@ -254,6 +254,9 @@ public class MusicOrganizer
         }
         return valid;
     }
+    /**
+     * valid Suffle play
+     */
     private boolean indexValidS(int index)
     {
         // The return value.
