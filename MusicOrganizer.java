@@ -18,9 +18,8 @@ public class MusicOrganizer
     
     // an arrayList for storing the tracks in a different order
     private ArrayList<Track> shuffTracks;
-    // an arrayList for storing the played tracks
+    private int currentPlay;
     private ArrayList<Track> storage;
-    
     private Random rand;
 
     /**
@@ -33,6 +32,7 @@ public class MusicOrganizer
         reader = new TrackReader();
         
         shuffTracks = new ArrayList<>();
+        currentPlay = 0;
         storage = new ArrayList<>();
         rand = new Random();
         
@@ -149,20 +149,45 @@ public class MusicOrganizer
     
     /**
      * Random playing
+     * 
+     * IMPORTANT: currently this I coundn't figure out how to play songs without  
+     * there being overlaping music or some exception being trown that I 
+     * don't know how to deal with
+     * 
      */
-    public void shufflePlay()
+    public void shuffleSongs()
     {
-        int trackNum = 0;
-        
-        for(Track track : tracks)
+        int tempNum = 0;
+        int oranSize = tracks.size();
+        for (int i = 0; i < oranSize; i ++)
         {
-            if (tracks.size() > 0)
-            {
-                trackNum = (rand.nextInt((tracks.size() - 1)) + 1 );        
-            }
-            shuffTracks.add(tracks.get(trackNum));
-            tracks.remove(tracks.get(trackNum));
-                
+            storage.add(tracks.get(i));
+        }
+        clearShuffledSongs();
+        for (int i = 0; i < oranSize; i++)
+        {   
+            tempNum = rand.nextInt(storage.size());
+            
+            shuffTracks.add(storage.get(tempNum));
+            storage.remove(storage.get(tempNum));
+            
+        }
+        
+        
+        
+        
+        
+     
+    }
+    /**
+     * next song in the shuffled list
+     */
+    public void nextShufSong()
+    {
+        player.stop();
+        
+        if (indexValidS(currentPlay))
+        {
             
         }
         
@@ -173,6 +198,33 @@ public class MusicOrganizer
     
     
     
+    
+    
+    private void clearShuffledSongs()
+    {
+        int size = shuffTracks.size();
+        
+        for (int i = 0; i < size; i ++)
+        {
+            shuffTracks.remove(0);
+        }
+    }
+    /**
+     * Shuffle list tracks
+     */
+    public void listAllShuffledTracks()
+    {
+        System.out.println("Track listing: ");
+        if (shuffTracks != null)
+        {
+            for(Track track : shuffTracks) {
+            System.out.println(track.getDetails());
+        }
+        }
+        
+        
+        System.out.println();
+    }    
     
     
     
@@ -194,6 +246,28 @@ public class MusicOrganizer
             valid = false;
         }
         else if(index >= tracks.size()) {
+            System.out.println("Index is too large: " + index);
+            valid = false;
+        }
+        else {
+            valid = true;
+        }
+        return valid;
+    }
+    /**
+     * valid Suffle play
+     */
+    private boolean indexValidS(int index)
+    {
+        // The return value.
+        // Set according to whether the index is valid or not.
+        boolean valid;
+        
+        if(index < 0) {
+            System.out.println("Index cannot be negative: " + index);
+            valid = false;
+        }
+        else if(index >= shuffTracks.size()) {
             System.out.println("Index is too large: " + index);
             valid = false;
         }
