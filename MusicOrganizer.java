@@ -152,41 +152,29 @@ public class MusicOrganizer
      */
     public void shufflePlay()
     {
-        int trackNum = 0;
-        int counter = 0;
-        System.out.println("Track size: " + tracks.size());
-        for (int i = 0; i < tracks.size(); i++)
-        {
-            System.out.println("This is inside the first for loop " + i); 
-            if (tracks.size() > 0)
-            {
-                trackNum = (rand.nextInt((tracks.size() - 1)));  
-                System.out.println("If size > 0: "+ tracks.size());
-            }
-            else
-            {   
-                trackNum = 0;
-                System.out.println("Else: " + tracks.size());
-            }
-            shuffTracks.add(tracks.get(trackNum));
-            tracks.remove(tracks.get(trackNum));
-            System.out.println("Showing what might be removed: " + tracks.get(trackNum));
-            System.out.println("counter: " + counter);
-            counter++;
+        int tempNum = 0;
+        int oranSize = tracks.size();
+        for (int i = 0; i < oranSize; i++)
+        {   
+            tempNum = rand.nextInt(tracks.size());
+            
+            shuffTracks.add(tracks.get(tempNum));
+            tracks.remove(tracks.get(tempNum));
+            
         }
         
-        
-        for (int i = 0; i < shuffTracks.size(); i++)
+        for (int i = shuffTracks.size() - 1; i >= 0; i--)
         {
-            
             tracks.add(shuffTracks.get(i));
             shuffTracks.remove(shuffTracks.get(i));
-            
         }
         
-        
-        
-        
+        for (int i = 0; i < tracks.size(); i++)
+        {
+            System.out.println("this is a loop:" + i);
+            player.startPlaying(tracks.get(i).getFilename());
+            System.out.println("played: " + tracks.get(i).getFilename());
+        }
         
         
         
