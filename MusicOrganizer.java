@@ -153,30 +153,45 @@ public class MusicOrganizer
     public void shufflePlay()
     {
         int trackNum = 0;
-        
-        for(Track track : tracks)
+        int counter = 0;
+        System.out.println("Track size: " + tracks.size());
+        for (int i = 0; i < tracks.size(); i++)
         {
+            System.out.println("This is inside the first for loop " + i); 
             if (tracks.size() > 0)
             {
-                trackNum = (rand.nextInt((tracks.size() - 1)) + 1 );        
+                trackNum = (rand.nextInt((tracks.size() - 1)));  
+                System.out.println("If size > 0: "+ tracks.size());
+            }
+            else
+            {   
+                trackNum = 0;
+                System.out.println("Else: " + tracks.size());
             }
             shuffTracks.add(tracks.get(trackNum));
             tracks.remove(tracks.get(trackNum));
-                
+            System.out.println("Showing what might be removed: " + tracks.get(trackNum));
+            System.out.println("counter: " + counter);
+            counter++;
+        }
+        
+        
+        for (int i = 0; i < shuffTracks.size(); i++)
+        {
+            
+            tracks.add(shuffTracks.get(i));
+            shuffTracks.remove(shuffTracks.get(i));
             
         }
-        for( Track track : shuffTracks)
-        {
-            if(shuffTracks.size() > 0)
-            {
-                trackNum = (rand.nextInt((shuffTracks.size() - 1)) + 1);
-            }
-            tracks.add(shuffTracks.get(trackNum));
-            shuffTracks.remove(tracks.get(trackNum));
-        }
         
         
         
+        
+        
+        
+        
+        
+     
     }
     
     
