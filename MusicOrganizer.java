@@ -165,7 +165,15 @@ public class MusicOrganizer
                 
             
         }
-        
+        for( Track track : shuffTracks)
+        {
+            if(shuffTracks.size() > 0)
+            {
+                trackNum = (rand.nextInt((shuffTracks.size() - 1)) + 1);
+            }
+            tracks.add(shuffTracks.get(trackNum));
+            shuffTracks.remove(tracks.get(trackNum));
+        }
         
         
         
