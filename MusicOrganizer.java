@@ -189,8 +189,16 @@ public class MusicOrganizer
         if (indexValidS(currentPlay))
         {
             
+            
+            System.out.println("Now playing: " + shuffTracks.get(currentPlay).getFilename());
+            player.startPlaying(shuffTracks.get(currentPlay).getFilename());
+            
+            currentPlay++;
         }
-        
+        else
+        {
+            currentPlay = 0;
+        }
         
         
         
